@@ -7,7 +7,7 @@ import { MaterialIcon } from '../Icon';
 // import DateTimePicker from '@react-native-community/datetimepicker';
 import { IconButton } from 'react-native-paper'
 
-const Login = () => {
+const Login = ({navigation}) => {
     const [Username, setUsername] = useState("")
     const [UserError, setUserError] = useState("")
     const [Password, setPassword] = useState("")
@@ -53,6 +53,7 @@ const Login = () => {
         if (UsernameValid && PasswordValid && EmailValid) {
             Alert.alert('Success', 'Account Created', [
                 { text: 'OK', onPress: (refresh) },
+                navigation.navigate('Login')
             ])
         }
     }
