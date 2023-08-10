@@ -189,7 +189,7 @@ const styles = StyleSheet.create({
     heading: {
         fontSize: 30,
         marginBottom: 20,
-        marginTop: 150,
+        marginTop: 30,
     },
     input: {
         flexDirection: 'row',
