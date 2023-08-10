@@ -142,7 +142,7 @@ const styles = StyleSheet.create({
         left: -100,
     },
     logo: {
-        marginTop: 192,
+        marginTop: 145,
         marginBottom: 20,
     },
     input: {
