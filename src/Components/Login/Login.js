@@ -41,10 +41,10 @@ const Login = ({navigation}) => {
       PasswordValid = true
     }
     if (UsernameValid && PasswordValid) {
-      // Alert.alert('Success', 'Login Successful', [
-      //   { text: 'OK', onPress: (refresh) },
-      //   navigation.navigate('ValidForm')
-      // ])
+      Alert.alert('Success', 'Login Successful', [
+        { text: 'OK', onPress: (refresh) },
+        navigation.navigate('ValidForm')
+      ])
       handleLogin()
     }
   }
