@@ -56,7 +56,7 @@ const Login = ({navigation}) => {
       Password,
     }
     APILoginData.login(testobj).then((res) => {
-      console.log("result ===> ",res.data);
+      console.log("result ===> ","Welcome "+testobj.Username);
     })
   }
 
