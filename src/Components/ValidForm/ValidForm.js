@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { View, Text, TextInput, StyleSheet, Alert } from 'react-native';
 import { Button } from 'react-native-paper';
+import APIFormData from "../../Services/FormService";
 
 const ValidForm = () => {
     const [Name, setName] = useState("")
@@ -73,10 +74,24 @@ const ValidForm = () => {
         }
 
         if (emailValid && NameValid && AddressValid && DOBValid && PhoneValid) {
+            validateSubmit()
             Alert.alert('Success', 'Submit Successful', [
                 { text: 'OK', onPress: (refstate) },
             ])
         }
+    }
+
+    const validateSubmit = async () => {
+        let obj = {
+            Name,
+            DOB,
+            Address,
+            Phone,
+            Email
+        }
+        APIFormData.form(obj).then((res) => {
+            console.log("result ===> ",res.data);
+        })
     }
 
     const refstate = () => {
@@ -105,7 +120,7 @@ const ValidForm = () => {
                 <View style={styles.input}>
                     <Text style={styles.labelFont}>Date of Birth</Text>
                     <TextInput style={styles.textbox}
-                        placeholder='dd/mm/yyyy'
+                        placeholder='dd.mm.yyyy'
                         keyboardType='numeric'
                         onChangeText={text => setDOB(text)}
                         value = {DOB} />

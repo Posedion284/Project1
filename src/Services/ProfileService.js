@@ -12,7 +12,7 @@ const register = (data) => {
 
 const login = (data) => {
     console.log("Login ===> ",data);
-    return http.Post(LoginUrl,data)
+    return http.Post(LoginUrl,data);
 }
 
 export default {
