@@ -3,9 +3,10 @@ import { View, Text, TextInput, StyleSheet, Image, Alert } from 'react-native';
 import { Button, Divider } from 'react-native-paper';
 import logo3 from '../../Images/logo3.png'
 import UX1 from '../../Images/UX1.jpg'
-import { MaterialIcon } from '../Icon';
+// import { MaterialIcon } from '../Icon';
 // import DateTimePicker from '@react-native-community/datetimepicker';
 import { IconButton } from 'react-native-paper'
+import APIRegisterData from "../../Services/ProfileService"
 
 const Login = ({navigation}) => {
     const [Username, setUsername] = useState("")
@@ -51,12 +52,22 @@ const Login = ({navigation}) => {
             PasswordValid = true
         }
         if (UsernameValid && PasswordValid && EmailValid) {
-            Alert.alert('Success', 'Account Created', [
-                { text: 'OK', onPress: (refresh) },
-                navigation.navigate('Login')
-            ])
+            handleSubmit();
         }
     }
+
+    //API calling
+    const handleSubmit = async () => {
+        let obj = {
+            Username,
+            Email,
+            Password,
+        }
+        APIRegisterData.register(obj).then((res) => {
+            console.log("result ===> ",res.data);
+        })
+    }
+
     const refresh = () => {
         setUsername("");
         setPassword("");

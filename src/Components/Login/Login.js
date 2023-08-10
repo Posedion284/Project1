@@ -6,6 +6,7 @@ import UX1 from '../../Images/UX1.jpg'
 import { MaterialIcon } from '../Icon';
 // import DateTimePicker from '@react-native-community/datetimepicker';
 import { IconButton } from 'react-native-paper'
+import APILoginData from "../../Services/ProfileService"
 
 const Login = ({navigation}) => {
   const [Username, setUsername] = useState("")
@@ -13,7 +14,7 @@ const Login = ({navigation}) => {
   const [Password, setPassword] = useState("")
   const [PasswordError, setPasswordError] = useState("")
 
-  const HandleLogin = () => {
+  const ValidLogin = () => {
     //Usernamevar 
     UsernameValid = false;
     const strongRegex = new RegExp("^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$");
@@ -40,16 +41,28 @@ const Login = ({navigation}) => {
       PasswordValid = true
     }
     if (UsernameValid && PasswordValid) {
-      Alert.alert('Success', 'Login Successful', [
-        { text: 'OK', onPress: (refresh) },
-        navigation.navigate('ValidForm')
-      ])
+      // Alert.alert('Success', 'Login Successful', [
+      //   { text: 'OK', onPress: (refresh) },
+      //   navigation.navigate('ValidForm')
+      // ])
+      handleLogin()
     }
   }
+
+  //API calling
+  const handleLogin = async () =>{
+    let testobj = {
+      Username,
+      Password,
+    }
+    APILoginData.login(testobj).then((res) => {
+      console.log("result ===> ",res.data);
+    })
+  }
+
   const refresh = () => {
     setUsername("");
     setPassword("");
-    // setPasshash("");
   }
 
   return (
@@ -83,7 +96,7 @@ const Login = ({navigation}) => {
       <View style={styles.input}>
         <Button style={styles.button1}
           mode='contained'
-          onPress={HandleLogin}>
+          onPress={ValidLogin}>
           Log In
         </Button>
       </View>
